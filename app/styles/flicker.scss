@@ -1,0 +1,65 @@
+
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.clearfix {
+    clear: both;
+}
+
+flicker,
+flicker-row,
+flicker-item {
+    display: block;
+    margin-bottom: 1px;
+}
+
+flicker {
+    background: #C5CED1;
+    padding: 5px;
+    border: 1px solid #888;
+    border-radius: 10px;
+}
+
+flicker-row {
+    position: relative;
+    height: 44px;
+    margin: 0;
+    overflow: hidden;
+}
+
+flicker-item {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 10px;
+    margin: 0;
+    background: linear-gradient(to bottom, #72797c 0%, #5f6567 100%);
+    color: #fff;
+    font-weight: 700;
+
+    &.ng-enter {
+        bottom: 100%;
+        transition: bottom .35s;
+        -webkit-transition: bottom .35s;
+    }
+
+    &.ng-enter-active {
+        bottom: 0%;
+    }
+
+    &.leave-add {
+        transition: bottom .35s;
+        -webkit-transition: bottom .35s;
+    }
+
+    &.leave-add-active {
+        bottom: -100%;
+    }
+
+}

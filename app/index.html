@@ -1,0 +1,44 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flicker</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- build:css({.tmp,app}) styles/flicker.css -->
+    <link rel="stylesheet" href="styles/flicker.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularFlicker">
+  
+    <div class="container" ng-controller="FlickerCtrl">
+
+      <flicker delay="1000" end-delay="1000">
+          <flicker-row ng-repeat="users in userChunks" ng-mouseover="freeze()" ng-mouseleave="unfreeze()" ng-transclude>
+              <flicker-item ng-repeat="user in users">
+                  <span class="pull-left">{{user.name}}</span>
+                  <span class="pull-right">{{user.amount}}</span>
+                  <div class="clearfix"></div>
+              </flicker-item>
+          </flicker-row>
+      </flicker>
+      
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/utils/chunk.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/flicker.js"></script>
+    <script src="scripts/directives/flicker.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

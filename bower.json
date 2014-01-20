@@ -1,0 +1,26 @@
+{
+    "name": "angular-flicker",
+    "description": "Angular module for a flicker component that flicks/switches data",
+    "version": "0.0.1",
+    "main": "flicker.js",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "keywords": [
+        "anglular",
+        "flicker",
+        "switcher",
+        "animating"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "angular": "1.2.6",
+        "angular-animate": "1.2.6",
+        "angular-mocks": "1.2.6",
+        "angular-scenario": "1.2.6"
+    }
+}
