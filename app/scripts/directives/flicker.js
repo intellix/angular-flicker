@@ -1,6 +1,18 @@
 'use strict';
 
-angular.module('angularFlicker')
+angular.module('angularFlicker', [
+    'ngAnimate'
+])
+
+.filter('chunk', function() {
+    return function(array, chunkSize) {
+        return [].concat.apply([],
+            array.map(function(elem, i) {
+                return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
+            })
+        )
+    };
+})
 
 .directive('flicker', function() {
     return {

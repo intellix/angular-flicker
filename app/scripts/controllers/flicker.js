@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('angularFlicker')
-
-.controller('FlickerCtrl', function($scope) {
+angular.module('angularFlicker').controller('FlickerCtrl', function($scope, $filter) {
 
     var users = [{
         name: 'intellix',
@@ -30,6 +28,6 @@ angular.module('angularFlicker')
         amount: 52
     }];
 
-    $scope.userChunks = users.chunk(3);
+    $scope.userChunks = $filter('chunk')(users, 3);
 
 });
