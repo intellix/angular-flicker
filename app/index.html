@@ -9,10 +9,12 @@
     <title>Flicker</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- build:css({.tmp,app}) styles/flicker.css -->
-    <link rel="stylesheet" href="styles/flicker.css">
-    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- build:css({.tmp,app}) css/flicker.css -->
+    <link rel="stylesheet" href="css/flicker.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="css/customized.css">
+
   </head>
   <body ng-app="angularFlicker">
   
@@ -21,23 +23,55 @@
       <flicker delay="1000" end-delay="1000">
           <flicker-row ng-repeat="users in userChunks" ng-mouseover="freeze()" ng-mouseleave="unfreeze()" ng-transclude>
               <flicker-item ng-repeat="user in users">
-                  <span class="pull-left">{{user.name}}</span>
-                  <span class="pull-right">{{user.amount}}</span>
-                  <div class="clearfix"></div>
+                  <span>{{user.name}}</span>
               </flicker-item>
           </flicker-row>
       </flicker>
       
     </div>
 
-    <!-- build:js scripts/vendor.js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+
+    <!-- build:js({.tmp,app}) js/flicker.min.js -->
+    <script src="js/flicker.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/directives/flicker.js"></script>
-    <script src="scripts/controllers/flicker.js"></script>
-    <!-- endbuild -->
+    <script>
+
+      angular.module('angularFlicker').controller('FlickerCtrl', function($scope, $filter) {
+
+        var users = [{
+          name: 'intellix',
+          amount: 243
+        }, {
+          name: 'and',
+          amount: 75
+        }, {
+          name: 'konoro',
+          amount: 122
+        }, {
+          name: 'kingdom',
+          amount: 252
+        }, {
+          name: 'are',
+          amount: 12
+        }, {
+          name: 'awesome',
+          amount: 22
+        }, {
+          name: 'really.',
+          amount: 223
+        }, {
+          name: 'honestly!',
+          amount: 52
+        }];
+
+        $scope.userChunks = $filter('chunk')(users, 3);
+
+      });
+
+    </script>
+    
 </body>
 </html>

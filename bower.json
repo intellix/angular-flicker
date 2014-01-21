@@ -1,14 +1,15 @@
 {
     "name": "angular-flicker",
     "description": "Angular module for a flicker component that flicks/switches data",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "flicker.js",
     "ignore": [
         "**/.*",
         "node_modules",
         "bower_components",
         "test",
-        "tests"
+        "tests",
+        "app"
     ],
     "keywords": [
         "angular",
