@@ -1,7 +1,7 @@
 {
     "name": "angular-flicker",
     "description": "Angular module for a flicker component that flicks/switches data",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "main": "flicker.js",
     "ignore": [
         "**/.*",
@@ -9,7 +9,11 @@
         "bower_components",
         "test",
         "tests",
-        "app"
+        "app",
+        "Gruntfile.js",
+        "karma-e2e-conf.js",
+        "karma.conf.js",
+        "package.json"
     ],
     "keywords": [
         "angular",
