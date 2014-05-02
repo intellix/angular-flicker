@@ -49,7 +49,6 @@ angular.module('angularFlicker', [
     return {
         require: '^flicker',
         restrict: 'E',
-        transclude: true,
         link: function(scope, element, attrs, flickerCtrl) {
 
             scope.frozen = false;
