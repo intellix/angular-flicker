@@ -43,7 +43,7 @@
     <div class="container" ng-controller="FlickerCtrl">
 
       <flicker delay="1000" end-delay="1000">
-          <flicker-row ng-repeat="users in userChunks" ng-mouseover="freeze()" ng-mouseleave="unfreeze()">
+          <flicker-row ng-repeat="users in userChunks" paused="user.paused" ng-mouseover="user.paused = true" ng-mouseleave="user.paused = false" last="$last">
               <flicker-item ng-repeat="user in users">
                   <span>{{user.name}}</span>
               </flicker-item>

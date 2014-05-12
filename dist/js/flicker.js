@@ -49,6 +49,9 @@ angular.module('angularFlicker', [
     return {
         require: '^flicker',
         restrict: 'E',
+        scope: {
+            last: '='
+        },
         link: function(scope, element, attrs, flickerCtrl) {
 
             scope.frozen = false;
@@ -100,7 +103,7 @@ angular.module('angularFlicker', [
             };
 
             flickerCtrl.addRow(scope);
-            if (scope.$last) {
+            if (scope.last) {
                 flickerCtrl.start();
             }
 
