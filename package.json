@@ -1,6 +1,6 @@
 {
-  "name": "flicker",
-  "version": "0.1.0",
+  "name": "angular-flicker",
+  "version": "0.1.1",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.2",
