@@ -10,7 +10,7 @@ angular.module('angularFlicker', [
             array.map(function(elem, i) {
                 return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
             })
-        )
+        );
     };
 })
 
@@ -21,7 +21,7 @@ angular.module('angularFlicker', [
             delay: '=',
             endDelay: '='
         },
-        controller: function($scope, $interval) {
+        controller: function($scope) {
 
             this.rows = [];
             this.delay = $scope.delay || 1000;
@@ -50,17 +50,13 @@ angular.module('angularFlicker', [
         require: '^flicker',
         restrict: 'E',
         scope: {
-            last: '='
+            last: '=',
+            paused: '='
         },
         link: function(scope, element, attrs, flickerCtrl) {
 
-            scope.frozen = false;
-            scope.freeze = function() {
-                scope.paused = true;
-            };
-            scope.unfreeze = function() {
-                scope.paused = false;
-            };
+            scope.paused = scope.paused || false;
+            scope.last = scope.last || false;
 
             scope.flicker = function() {
 
@@ -68,7 +64,7 @@ angular.module('angularFlicker', [
                 var lastItem = angular.element(element[0].querySelector('flicker-item:last-child'));
 
                 $animate.enter(item, element, lastItem);
-                $animate.addClass(lastItem, 'leave', function() {
+                $animate.addClass(lastItem, 'leave').then(function() {
                     lastItem.removeClass('leave');
                 });
 
@@ -76,7 +72,7 @@ angular.module('angularFlicker', [
 
             scope.start = function() {
 
-                var delay = flickerCtrl.delay + flickerCtrl.delay * scope.$index;
+                var delay = flickerCtrl.delay + flickerCtrl.delay * scope.$parent.$index;
                 var interval = flickerCtrl.rows.length * flickerCtrl.delay + flickerCtrl.endDelay;
 
                 scope.timeout = $timeout(function() {
@@ -97,9 +93,10 @@ angular.module('angularFlicker', [
                 }, delay);
 
             };
+
             scope.stop = function() {
-                scope.timeout.cancel();
-                scope.interval.cancel();
+                $timeout.cancel(scope.timeout);
+                $interval.cancel(scope.interval);
             };
 
             flickerCtrl.addRow(scope);
@@ -107,18 +104,6 @@ angular.module('angularFlicker', [
                 flickerCtrl.start();
             }
 
-        }
-    };
-})
-
-.directive('flickerItem', function() {
-    return {
-        require: '^flicker',
-        restrict: 'E',
-        link: function(scope, element, attrs) {
-            if (scope.$last) {
-                scope.$emit('itemsLoaded');
-            }
         }
     };
 });

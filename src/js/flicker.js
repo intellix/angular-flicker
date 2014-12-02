@@ -64,7 +64,7 @@ angular.module('angularFlicker', [
                 var lastItem = angular.element(element[0].querySelector('flicker-item:last-child'));
 
                 $animate.enter(item, element, lastItem);
-                $animate.addClass(lastItem, 'leave', function() {
+                $animate.addClass(lastItem, 'leave').then(function() {
                     lastItem.removeClass('leave');
                 });
 
