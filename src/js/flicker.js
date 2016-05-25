@@ -60,8 +60,13 @@ angular.module('angularFlicker', [
 
             scope.flicker = function() {
 
-                var item = angular.element(element[0].querySelector('flicker-item'));
-                var lastItem = angular.element(element[0].querySelector('flicker-item:last-child'));
+                var items = element[0].querySelectorAll('flicker-item');
+                if (items.length < 2) {
+                    return;
+                }
+
+                var item = angular.element(items[0]);
+                var lastItem = angular.element(items[items.length - 1]);
 
                 $animate.enter(item, element, lastItem);
                 $animate.addClass(lastItem, 'leave').then(function() {
